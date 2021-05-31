@@ -15,28 +15,28 @@
 #include "TH2.h"
 #include "TF2.h"
 
-Double_t KAlpha( Double_t, Short_t, Int_t=0 );
-Double_t KM( TH1D*, Float_t, Short_t=1 );
+Double_t KAlpha(Double_t, Short_t, Int_t = 0);
+Double_t KM(TH1D *, Float_t, Short_t = 1);
 
-class KMaterial {
+class KMaterial
+{
 
 private:
-  
 public:
-  static Int_t Mat;              // Material index 
+  static Int_t Mat;              // Material index
   static Float_t Temperature;    // Temperature
   static Int_t Mobility;         // mobility model for each material
   static Int_t ImpactIonization; // impact ionization model
 
   //////////////////////////////////////////////////////
 
-  KMaterial(){Mat=1;} // silicon
+  KMaterial() { Mat = 1; } // silicon
   ~KMaterial(){};
-   static Double_t dEdx(Double_t);
-   static Float_t dEX(Double_t ,Double_t *, Double_t *,Double_t);
-   static Float_t Perm(Int_t=1);
-   static Float_t Rho(){return 0;};
-   static Int_t MobMod();
- ClassDef(KMaterial,1) 
-   };
+  static Double_t dEdx(Double_t);
+  static Float_t dEX(Double_t, Double_t *, Double_t *, Double_t);
+  static Float_t Perm(Int_t = 1);
+  static Float_t Rho() { return 0; };
+  static Int_t MobMod();
+  ClassDef(KMaterial, 1)
+};
 #endif
