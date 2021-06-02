@@ -1,7 +1,7 @@
 # KMaterial
 This page contains functions and the `KMaterial` class that describes the properties of various materials.
 
-## Functions
+## Helper Functions
 Refer to [this](https://www.iue.tuwien.ac.at/phd/park/node36.html) for background information. The gain factor, or multiplication coefficient $M(x)$ corresponds to the total number of electron-hole pairs created in the depletion region by a single electron-hole pair generated at a distance $x$:
 
 $$M(x) = \frac{\exp(I)}{1-\int_x^W \alpha_p \exp(I) \text{ dx}}$$
@@ -25,7 +25,7 @@ The function `Double_t KM(TH1D *his, Float_t Start, Short_t Rev)` determines the
 * `Float_t Start` - creation point of the e-h pair for multiplication junction Start=0; the opposite side of the junction Start=thickness;
 * `Short_t Rev` - in the calculation it is assumed that electrons drift in the high field region (`Rev=0`). If the holes drift then `Rev=1`;
 
-## KMaterial Class
+## Class Attributes
 The `KMaterial` class does not contain any private variables. It contains the following public variables:
 
 * `Int_t Mat` Material Index (default: 1)
@@ -41,6 +41,8 @@ The `KMaterial` class does not contain any private variables. It contains the fo
     * Scharf: 3
     * Jacoboni: 4
 * `Int_t ImpactIonization` Impact Ionization Coefficient (default: 0)
+
+## Class Methods
 
 ### Perm
 The function `Float_t Perm(Int_t Material)` determines the relative permeability $\epsilon_r$ of the material depending on the value of `Mat.`
