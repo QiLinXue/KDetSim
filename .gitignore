@@ -1,10 +1,10 @@
 
 *~
 *.o
-*.sl
+# *.sl
 *.root
-*.pcm
-*UX*
+# *.pcm
+# *UX*
 *.html
 *_files
 /examples*
