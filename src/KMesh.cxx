@@ -1,7 +1,7 @@
 #include "KMesh.h"
 #include "TMath.h"
 
-ClassImp(KMesh)
+ClassImp(KMesh);
 //////////////////////////////////////////////////////////////////////////
 //                                                                      //
 // KMesh                                                                //
