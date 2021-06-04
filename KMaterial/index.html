@@ -53,10 +53,18 @@
                     <li class="toctree-l1"><a class="reference internal" href="..">KDetSim Documentation!</a>
                     </li>
                 </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../KDetector/">KDetector</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../KGeometry/">KGeometry</a>
+                    </li>
+                </ul>
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">KMaterial</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a>
+    <li class="toctree-l2"><a class="reference internal" href="#helper-functions">Helper Functions</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#km">KM</a>
     </li>
@@ -64,7 +72,9 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#kmaterial-class">KMaterial Class</a>
+    <li class="toctree-l2"><a class="reference internal" href="#class-attributes">Class Attributes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#class-methods">Class Methods</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#perm">Perm</a>
     </li>
@@ -113,7 +123,7 @@
               
                 <h1 id="kmaterial">KMaterial</h1>
 <p>This page contains functions and the <code>KMaterial</code> class that describes the properties of various materials.</p>
-<h2 id="functions">Functions</h2>
+<h2 id="helper-functions">Helper Functions</h2>
 <p>Refer to <a href="https://www.iue.tuwien.ac.at/phd/park/node36.html">this</a> for background information. The gain factor, or multiplication coefficient <span class="arithmatex">\(M(x)\)</span> corresponds to the total number of electron-hole pairs created in the depletion region by a single electron-hole pair generated at a distance <span class="arithmatex">\(x\)</span>:</p>
 <div class="arithmatex">\[M(x) = \frac{\exp(I)}{1-\int_x^W \alpha_p \exp(I) \text{ dx}}\]</div>
 <p>with <span class="arithmatex">\(I=\int_0^x \alpha_n M(x) \text{ dx}\)</span>. Here, <span class="arithmatex">\(\alpha_n\)</span> and <span class="arithmatex">\(\alpha_p\)</span> are the ionization coefficients.</p>
@@ -137,7 +147,7 @@
 <li><code>Float_t Start</code> - creation point of the e-h pair for multiplication junction Start=0; the opposite side of the junction Start=thickness;</li>
 <li><code>Short_t Rev</code> - in the calculation it is assumed that electrons drift in the high field region (<code>Rev=0</code>). If the holes drift then <code>Rev=1</code>;</li>
 </ul>
-<h2 id="kmaterial-class">KMaterial Class</h2>
+<h2 id="class-attributes">Class Attributes</h2>
 <p>The <code>KMaterial</code> class does not contain any private variables. It contains the following public variables:</p>
 <ul>
 <li><code>Int_t Mat</code> Material Index (default: 1)<ul>
@@ -158,6 +168,7 @@
 </li>
 <li><code>Int_t ImpactIonization</code> Impact Ionization Coefficient (default: 0)</li>
 </ul>
+<h2 id="class-methods">Class Methods</h2>
 <h3 id="perm">Perm</h3>
 <p>The function <code>Float_t Perm(Int_t Material)</code> determines the relative permeability <span class="arithmatex">\(\epsilon_r\)</span> of the material depending on the value of <code>Mat.</code></p>
 <h3 id="mobmod">MobMod</h3>
@@ -174,7 +185,7 @@
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href=".." class="btn btn-neutral" title="KDetSim Documentation!"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../KGeometry/" class="btn btn-neutral" title="KGeometry"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -200,7 +211,7 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../KGeometry/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
     </span>
