@@ -57,14 +57,22 @@
         << ", Q" << q
         << endl;
 
+        std::ofstream outfile;
+
+        outfile.open("pixel_output.txt", std::ios_base::app); // append instead of overwrite
+
         if (q < 0)
         {
             graph->Fill(n, (-q));
+            outfile << n << " " << -q << "\n"; 
         }
         else
         {
             graph->Fill(n, q);
+            outfile << n << " " << q << "\n"; 
         }
+
+        
     }
 
     TCanvas c1;
