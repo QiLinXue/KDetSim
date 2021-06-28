@@ -1,9 +1,9 @@
 
 *~
 *.o
-# *.sl
+*.sl
 *.root
-# *.pcm
+*.pcm
 # *UX*
 *.html
 *_files

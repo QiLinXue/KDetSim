@@ -6,7 +6,7 @@
 
 {
     KPixel *det = new KPixel(1, 1 * 150, 1 * 100, 300); // 1 pixel, [um]
-    TProfile *graph = new TProfile("vvsq", "Voltage vs Charge;Voltage[V];Charge[q]", 80, -200.00, 200.00);
+    TProfile *graph = new TProfile("vvsq", "Voltage vs Charge;Voltage[V];Charge[q]", 400, -200.00, 200.00);
     TCanvas cEZX;
     Double_t q = 0;
     int x, y, z, n, a, b;
@@ -20,6 +20,8 @@
     det->Temperature = 293;
     det->diff = 1;
     det->Landau = 0;
+    det->MTresh = 1.01; // multiplication
+    det->BDTresh = 1.5; // breakdown
 
     det->enp[0] = 0.5 * 150; // entry point x [um]
     det->enp[1] = 0.5 * 100; // entry point y
@@ -28,15 +30,14 @@
     det->exp[0] = 0.5 * 150;
     det->exp[1] = 0.5 * 100;
     det->exp[2] = 295;
-    for (double n = -200; n <= 200; n+=5)
+    for (double n = -200; n <= 200; n += 10)
     {
 
         det->Voltage = n; // above full depletion for Neff = 1, d = 300
-        det->CalField(0);    // E-field
-        det->CalField(1);    // Ramo weight field
+        det->CalField(0); // E-field
+        det->CalField(1); // Ramo weight field
 
         // track:
-
 
         det->ShowMipIR(120);
 
@@ -52,27 +53,25 @@
 
         q = det->sum->Integral();
 
-          cout
-        << "V " << n
-        << ", Q" << q
-        << endl;
+        cout
+            << "V " << n
+            << ", Q" << q
+            << endl;
 
         std::ofstream outfile;
 
-        outfile.open("pixel_output.txt", std::ios_base::app); // append instead of overwrite
+        outfile.open("output.txt", std::ios_base::app); // append instead of overwrite
 
         if (q < 0)
         {
             graph->Fill(n, (-q));
-            outfile << n << " " << -q << "\n"; 
+            outfile << n << " " << -q << "\n";
         }
         else
         {
             graph->Fill(n, q);
-            outfile << n << " " << q << "\n"; 
+            outfile << n << " " << q << "\n";
         }
-
-        
     }
 
     TCanvas c1;

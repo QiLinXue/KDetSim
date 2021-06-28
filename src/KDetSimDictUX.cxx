@@ -1106,8 +1106,6 @@ void KDetector::Streamer(TBuffer &R__b)
       R__b >> BreakDown;
       R__b >> MTresh;
       R__b >> BDTresh;
-      R__b >> Q;
-      R__b >> Q_density;
       R__b.ReadStaticArray((float*)enp);
       R__b.ReadStaticArray((float*)exp);
       R__b >> diff;
@@ -1143,8 +1141,6 @@ void KDetector::Streamer(TBuffer &R__b)
       R__b << BreakDown;
       R__b << MTresh;
       R__b << BDTresh;
-      R__b << Q;
-      R__b << Q_density;
       R__b.WriteArray(enp, 3);
       R__b.WriteArray(exp, 3);
       R__b << diff;

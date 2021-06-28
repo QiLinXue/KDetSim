@@ -400,9 +400,6 @@ KDetector::KDetector()
   Debug = 0;         //  bo printing of debug information
   Voltage2 = 0;
 
-  // New ones
-  Q = 0;
-  Q_density = 0.1;
 } // constructor
 
 //------------------------------------------------------------------------------
@@ -1149,7 +1146,7 @@ void KDetector::MipIR(Int_t ndiv)
   for (int ipx = 0; ipx < 99; ++ipx)
     qnode[ipx] = 0;
 
-  Q = dist * 0.1; // 0.1 ke/um mean
+  double Q = dist * 0.1; // 0.1 ke/um mean
 
   // energy loss distribution:
   // the sum of many Landaus becomes Gaussian (central limit theorem)
@@ -1158,6 +1155,8 @@ void KDetector::MipIR(Int_t ndiv)
   TF1 *lan = new TF1("lan", " TMath::Landau(x,[0],[1])", 0, 10 * Q);
   lan->SetParameter(0, Q);                         // peak from mean
   lan->SetParameter(1, Q / 10 / sqrt(dist / 150)); // width, adjusted DP 10/2017
+
+  // srim.org
 
   if (Landau)
     Q = lan->GetRandom();
@@ -1172,8 +1171,24 @@ void KDetector::MipIR(Int_t ndiv)
   lan2->SetParameter(0, qstp * 11.25 / 15.5); // peak from mean
   lan2->SetParameter(1, qstp / 10);           // width, adjusted
 
+  float table[] = {
+    4.0, 4.0, 4.0, 4.0, 5.0, 5.0, 5.0, 5.0,
+    5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0,
+    5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0,
+    5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0,
+    5.0, 5.0, 5.0, 5.0, 5.0, 6.0, 6.0, 6.0,
+    6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0,
+    6.0, 6.0, 6.0, 6.0, 6.0, 6.0, 7.0, 7.0,
+    7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0,
+    7.0, 7.0, 7.0, 7.0, 8.0, 8.0, 8.0, 8.0,
+    8.0, 8.0, 8.0, 9.0, 9.0, 9.0, 9.0, 9.0,
+    10.0, 10.0, 10.0, 10.0, 10.0, 11.0, 11.0, 12.0,
+    12.0, 12.0, 14.0, 14.0, 16.0, 16.0, 19.0, 19.0,
+    19.0, 16.0, 16.0, 5.0};
+
   for (int i = 0; i < ndiv; ++i)
   {
+
     Float_t sp[3];
     for (int j = 0; j < 3; ++j)
       sp[j] = enp[j] + (i + 0.5) * (exp[j] - enp[j]) / ndiv; // point on track
@@ -1191,7 +1206,7 @@ void KDetector::MipIR(Int_t ndiv)
 
       //double q = qstp; // DP 10/2017
       //double q = 1.0 / ndiv; // DP Dec 2018
-      double q = 1.0; // DP Dec 2018
+      double q = table[i]; // DP Dec 2018
       if (Landau)
         q = lan2->GetRandom();
       //std::cout << "  " << q;
