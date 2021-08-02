@@ -32,7 +32,9 @@
     det->Temperature = 300; // Temperature
     det->taue = 1.7; // electron lifetime
     det->tauh = 11; // hole lifetime
-    det->Voltage = 200; // Voltage
+
+    int n = 200;
+    det->Voltage = n; // Voltage
 
     // 10 = Diamond
     det->Mat = 10;   // Material
