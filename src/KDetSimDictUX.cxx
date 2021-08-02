@@ -1115,6 +1115,7 @@ void KDetector::Streamer(TBuffer &R__b)
       R__b >> neg;
       R__b >> sum;
       R__b.ReadStaticArray((double*)qnode);
+      R__b >> q_sum;
       R__b.CheckByteCount(R__s, R__c, KDetector::IsA());
    } else {
       R__c = R__b.WriteVersion(KDetector::IsA(), kTRUE);
@@ -1150,6 +1151,7 @@ void KDetector::Streamer(TBuffer &R__b)
       R__b << (TObject*)neg;
       R__b << (TObject*)sum;
       R__b.WriteArray(qnode, 99);
+      R__b << q_sum;
       R__b.SetByteCount(R__c, kTRUE);
    }
 }

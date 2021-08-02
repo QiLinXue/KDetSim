@@ -490,12 +490,12 @@ Double_t KField::Mobility(Float_t E, Float_t T, Float_t Charg, Double_t Neff, In
   case 10: //Diamond parametrization
     if (Charg > 0)
     {
-      lfm = 2064;
+      lfm = 3800;
       vsat = 14.1e6;
     }
     else
     {
-      lfm = 1714;
+      lfm = 4500;
       vsat = 9.6e6;
     };
     hfm = lfm / (1 + (lfm * E) / vsat);

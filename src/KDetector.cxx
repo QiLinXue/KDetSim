@@ -827,7 +827,13 @@ void KDetector::Drift(Double_t sx, Double_t sy, Double_t sz, Float_t qsign,
   seg->Charge[st] = 0;
 
   Float_t EE[4];
+  // std::cout << "BBBBBBBBBBB " << EE[0] << " " << EE[1] << " " << EE[2] << " "
+  //             << std::endl
+  //             << std::flush;
   Real.CalFieldXYZ(cx, cy, cz, EE);
+  // std::cout << "AAAAAAAAAAA " << EE[1] << " " << EE[2] << " " << EE[3] << " "
+  //             << std::endl
+  //             << std::flush;
 
   seg->Efield[st] = EE[0]; // magnitude
 
@@ -838,7 +844,7 @@ void KDetector::Drift(Double_t sx, Double_t sy, Double_t sz, Float_t qsign,
 
   Int_t is_hit = 0;
 
-  bool ldb = 0;
+  bool ldb = 1;
   if (ldb)
     std::cout << "Drift from " << sx
               << " " << sy
@@ -873,7 +879,10 @@ void KDetector::Drift(Double_t sx, Double_t sy, Double_t sz, Float_t qsign,
 
     if (ldb)
       std::cout << "KDetector::Drift stp " << st
-                << ": FF " << FF.Mag()
+                << ": FFx " << FF.x() << " "
+                << ": FFy " << FF.y() << " "
+                << ": FFz " << FF.z() << " "
+                << ": B " << EV.Cross(BB).Mag() << " "
                 << std::flush;
 
     if (DM != NULL)
@@ -1070,7 +1079,7 @@ void KDetector::Drift(Double_t sx, Double_t sy, Double_t sz, Float_t qsign,
 
     // termination of the drift:
 
-    if (t > 25E-9) // [s] LHC
+    if (t > 100E-9) // [s] LHC
       //if( t > 10E-9 ) // [s] DP for edge9 at 400V, tauh=2/F
       is_hit = 9;
     /*
@@ -1184,7 +1193,22 @@ void KDetector::MipIR(Int_t ndiv)
     8.0, 8.0, 8.0, 9.0, 9.0, 9.0, 9.0, 9.0,
     10.0, 10.0, 10.0, 10.0, 10.0, 11.0, 11.0, 12.0,
     12.0, 12.0, 14.0, 14.0, 16.0, 16.0, 19.0, 19.0,
-    19.0, 16.0, 16.0, 5.0};
+    19.0, 16.0, 16.0, 5.0}; // 744
+
+  // float table[] = {
+  //     8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0,
+  //     8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0,
+  //     8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 9.0,
+  //     9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0,
+  //     9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 10.0, 10.0,
+  //     10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0,
+  //     11.0, 11.0, 11.0, 11.0, 12.0, 12.0, 12.0, 12.0,
+  //     12.0, 13.0, 13.0, 13.0, 13.0, 13.0, 15.0, 15.0,
+  //     15.0, 15.0, 15.0, 17.0, 17.0, 17.0, 17.0, 17.0,
+  //     21.0, 21.0, 21.0, 21.0, 21.0, 22.0, 22.0, 22.0,
+  //     22.0, 22.0, 2.0, 2.0, 2.0, 2.0, 2.0, 0.0,
+  //     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+  //     0.0, 0.0, 0.0, 0.0}; // 973
 
   for (int i = 0; i < ndiv; ++i)
   {

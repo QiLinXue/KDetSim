@@ -1,3 +1,6 @@
+# Bash script I made to automate processes.
+# You will need to replace the directory with your directory (i.e. change xueqilin to your username)
+
 make
 cd ~/root/lib
 rm KDetSimDictUX_rdict.pcm

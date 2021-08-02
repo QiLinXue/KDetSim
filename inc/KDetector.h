@@ -84,6 +84,7 @@ public:
   TH1D *sum;	       // total drift current
   Double_t qnode[99];  // induced charge per node (DP)
 
+  float q_sum;
   // Constructors and destructor
   KDetector();
   ~KDetector();
